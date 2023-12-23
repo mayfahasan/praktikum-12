@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image picker</title>
+    <script>
+        function image_picker(){
+            const list_image = ["ciro.jpg", "howl.jpg", "jiro.jpg", "luna.jpg", "ponyo.jpg", "sho.jpg"];
+            let pilihan = document.getElementById("opsi").value;
+
+            if(pilihan == "ciro"){
+                let select = list_image[0]; //ciro.jpg
+                document.getElementById("gambar").src = `images/${select}`;
+            }
+
+            if(pilihan == "howl"){
+                let select = list_image[1]; //howl.jpg
+                document.getElementById("gambar").src = `images/${select}`;
+            }
+
+            if(pilihan == "jiro"){
+               let select = list_image[2]; //jiro.jpg
+               document.getElementById("gambar").src = `images/${select}`;
+            }
+
+            if(pilihan == "luna"){
+               let select = list_image[3]; //luna.jpg
+               document.getElementById("gambar").src = `images/${select}`;
+            }
+
+            if(pilihan == "ponyo"){
+               let select = list_image[4]; //ponyo.jpg
+               document.getElementById("gambar").src = `images/${select}`;
+            }
+
+            if(pilihan == "sho"){
+               let select = list_image[5]; //sho.jpg
+               document.getElementById("gambar").src = `images/${select}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>image picker</h1>
+    <select id="opsi" onchange="image_picker()">
+    <option value="img">select image</option>
+    <option value="ciro">chiku</option>
+    <option value="howl">howl</option>
+    <option value="jiro">jiro</option>
+    <option value="luna">luna</option>
+    <option value="ponyo">ponyo</option>
+    <option value="sho">sho</option>
+   </select>
+
+   <div class="container">
+        <img id="gambar" src="images/default-image.jpg" width="500" alt="">
+   </div>
+</body>
+</html>

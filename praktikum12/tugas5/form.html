@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+</head>
+<body>
+    <fieldset>
+        <legend><h1>Form Validation</h1></legend>
+
+        <form id="formValidation">
+            <label for="namaPelanggan">Nama Pelanggan:</label>
+            <br>
+            <input type="text" id="namaPelanggan" name="namaPelanggan" maxlength="30">
+            <br>
+            <label for="email">Email:</label>
+            <br>
+            <input type="email" id="email" name="email">
+            <br>
+            <label for="jamKeberangkatan">Jam Keberangkatan:</label>
+            <br>
+            <input type="time" id="jamKeberangkatan" name="jamKeberangkatan">
+            <br>
+            <label for="tujuanKeberangkatan">Tujuan Keberangkatan:</label>
+            <br>
+            <input type="text" id="tujuanKeberangkatan" name="tujuanKeberangkatan">
+            <br>
+            <label for="jumlahTiket">Jumlah Tiket:</label>
+            <br>
+            <input type="number" id="jumlahTiket" name="jumlahTiket" min="1" max="10">
+            <br>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </fieldset>
+
+    <script>
+        const form = document.getElementById('formValidation');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const namaPelanggan = form.namaPelanggan.value;
+            const email = form.email.value;
+            const jamKeberangkatan = form.jamKeberangkatan.value;
+            const tujuanKeberangkatan = form.tujuanKeberangkatan.value;
+            const jumlahTiket = form.jumlahTiket.value;
+
+            function displayError(input, errorMessage) {
+                const errorDiv = document.createElement('div');
+                errorDiv.innerHTML = errorMessage;
+                errorDiv.style.color = 'red';
+
+                const checkErr = input.parentNode.querySelector('div');
+                if (!checkErr) {
+                    input.parentNode.insertBefore(errorDiv, input.nextSibling);
+                    input.focus();
+                    setTimeout(() => {
+                        errorDiv.remove();
+                    }, 2500);
+                }
+            }
+
+            if (!namaPelanggan) {
+                displayError(form.namaPelanggan, 'Isi nama pelanggan');
+                return;
+            }
+
+            if (!email) {
+                displayError(form.email, 'Isi email');
+                return;
+            }
+
+            if (!jamKeberangkatan) {
+                displayError(form.jamKeberangkatan, 'Isi jam berangkat');
+                return;
+            }
+
+            if (!tujuanKeberangkatan) {
+                displayError(form.tujuanKeberangkatan, 'Isi tujuan');
+                return;
+            }
+
+            if (!jumlahTiket || jumlahTiket < 1 || jumlahTiket > 10) {
+                displayError(form.jumlahTiket, 'Isi bilangan bulat antara 1-10');
+                return;
+            }
+
+            const formData = `
+                Nama Pelanggan: ${namaPelanggan}
+                Email: ${email}
+                Jam Keberangkatan: ${jamKeberangkatan}
+                Tujuan Keberangkatan: ${tujuanKeberangkatan}
+                Jumlah Tiket: ${jumlahTiket}
+            `;
+
+            document.body.innerHTML += `<pre>${formData}</pre>`;
+
+            alert('Data berhasil dikirim');
+        });
+    </script>
+</body>
+</html>

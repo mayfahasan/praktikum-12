@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kurs rupiah</title>
+    <style>
+        table {
+            width: 30%;
+            background-color: rgb(217,241,255);
+            border: 1px solid black; 
+        }
+
+        th,
+        td {
+            border: 1px solid #757272;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgb(217,241,255);
+        }
+
+        input,
+        select {
+            width: calc(100% - 20px);
+            padding: 1px;
+        }
+       
+        fieldset {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form style="background-color:rgb(217,241,255) ;">
+
+        <fieldset>
+            <legend>Kurs Rupiah - Mata Uang Asing</legend>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Masukkan Nilai</th>
+                        <th>Valas</th>
+                        <th>Nilai Rupiah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" id="uang" placeholder="Masukkan jumlah uang"></td>
+                        <td>
+                            <select id="pilihan">
+                                <option value="pilih">Pilih</option>
+                                <option value="usd">Dollar US</option>
+                                <option value="sd">Dollar Singapore</option>
+                                <option value="rm">Ringgit Malaysia</option>
+                                <option value="yen">Yen Jepang</option>
+                                <option value="euro">Euro</option>
+                                <option value="riyal">Riyal Saudi Arabia</option>
+                            </select>
+                        </td>
+                        <td><input type="number" id="konversi" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+
+    <script>
+        let pilihan = document.getElementById('pilihan');
+        let uangInput = document.getElementById('uang');
+        let konversiField = document.getElementById('konversi');
+
+        pilihan.onchange = function () {
+            let uang = uangInput.value;
+
+            switch (pilihan.value) {
+                case 'usd':
+                    konversiField.value = uang * 9915;
+                    break;
+                case 'sd':
+                    konversiField.value = uang * 12472;
+                    break;
+                case 'rm':
+                    konversiField.value = uang * 874;
+                    break;
+                case 'yen':
+                    konversiField.value = uang * 120;
+                    break;
+                case 'euro':
+                    konversiField.value = uang * 15888;
+                    break;
+                case 'riyal':
+                    konversiField.value = uang * 3592;
+                    break;
+                default:
+                    konversiField.value = 'pilih mata uang terlebih dahulu';
+            }
+        }
+    </script>
+</body>
+</html>
